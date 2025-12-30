@@ -2,8 +2,8 @@
 
 namespace App\Actions\Auth;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Lorisleiva\Actions\Concerns\AsAction;
 
@@ -11,9 +11,6 @@ class LogoutAction
 {
     use AsAction;
 
-    /**
-     * Handle user logout.
-     */
     public function handle(Request $request): void
     {
         Auth::guard('web')->logout();
@@ -21,13 +18,10 @@ class LogoutAction
         $request->session()->regenerateToken();
     }
 
-    /**
-     * Execute as a controller action.
-     */
-    public function asController(Request $request): Response
+    public function asController(Request $request): RedirectResponse
     {
         $this->handle($request);
 
-        return response()->noContent();
+        return redirect('/');
     }
 }

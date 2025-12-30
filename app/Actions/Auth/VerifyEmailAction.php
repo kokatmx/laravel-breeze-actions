@@ -11,9 +11,6 @@ class VerifyEmailAction
 {
     use AsAction;
 
-    /**
-     * Handle email verification.
-     */
     public function handle(EmailVerificationRequest $request): bool
     {
         if ($request->user()->hasVerifiedEmail()) {
@@ -28,23 +25,16 @@ class VerifyEmailAction
         return false;
     }
 
-    /**
-     * Execute as a controller action.
-     */
     public function asController(EmailVerificationRequest $request): RedirectResponse
     {
         if ($request->user()->hasVerifiedEmail()) {
-            return redirect()->intended(
-                config('app.frontend_url') . '/dashboard?verified=1'
-            );
+            return redirect()->intended(route('dashboard', absolute: false) . '?verified=1');
         }
 
         if ($request->user()->markEmailAsVerified()) {
             event(new Verified($request->user()));
         }
 
-        return redirect()->intended(
-            config('app.frontend_url') . '/dashboard?verified=1'
-        );
+        return redirect()->intended(route('dashboard', absolute: false) . '?verified=1');
     }
 }

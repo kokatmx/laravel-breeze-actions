@@ -4,8 +4,8 @@ namespace App\Actions\Auth;
 
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
@@ -15,21 +15,15 @@ class RegisterAction
 {
     use AsAction;
 
-    /**
-     * Get the validation rules.
-     */
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|lowercase|email|max:255|unique:' . User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ];
     }
 
-    /**
-     * Handle user registration.
-     */
     public function handle(array $data): User
     {
         $user = User::create([
@@ -43,16 +37,13 @@ class RegisterAction
         return $user;
     }
 
-    /**
-     * Execute as a controller action.
-     */
-    public function asController(Request $request): Response
+    public function asController(Request $request): RedirectResponse
     {
         $validated = $request->validate($this->rules());
         $user = $this->handle($validated);
 
         Auth::login($user);
 
-        return response()->noContent();
+        return redirect(route('dashboard', absolute: false));
     }
 }
