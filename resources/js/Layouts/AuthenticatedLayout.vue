@@ -35,9 +35,10 @@ const showingNavigationDropdown = ref(false);
                             <!-- Navigation Links -->
                             <div class="hidden space-x-1 sm:ms-8 sm:flex">
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')"
-                                    class="px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200" :class="route().current('dashboard')
+                                    class="px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200"
+                                    :class="route().current('dashboard')
                                         ? 'bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300'
-                                        : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'">
+                                        : 'text-gray-600 dark:text-gray-100 hover:text-black dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700'">
                                     <svg class="w-5 h-5 inline-block mr-2" fill="none" viewBox="0 0 24 24"
                                         stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -46,9 +47,10 @@ const showingNavigationDropdown = ref(false);
                                     Dashboard
                                 </NavLink>
                                 <NavLink :href="route('weather')" :active="route().current('weather')"
-                                    class="px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200" :class="route().current('weather')
+                                    class="px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200"
+                                    :class="route().current('weather')
                                         ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300'
-                                        : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'">
+                                        : 'text-gray-600 dark:text-gray-100 hover:text-black dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700'">
                                     <svg class="w-5 h-5 inline-block mr-2" fill="none" viewBox="0 0 24 24"
                                         stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

@@ -49,9 +49,22 @@ const getBackgroundClass = () => {
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-white">
-                Weather App
-            </h2>
+            <div class="flex items-center gap-3">
+                <div
+                    class="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/20">
+                    <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+                    </svg>
+                </div>
+                <div>
+                    <h2 class="text-xl font-bold text-gray-900 dark:text-white">
+                        Weather Forecast
+                    </h2>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Pantau kondisi cuaca real-time di berbagai
+                        belahan dunia</p>
+                </div>
+            </div>
         </template>
 
         <div class="py-12">
@@ -111,7 +124,7 @@ const getBackgroundClass = () => {
                             <img :src="getWeatherIcon(weather.icon)" :alt="weather.description"
                                 class="h-32 w-32 drop-shadow-2xl" />
                             <div class="text-center">
-                                <p class="text-8xl font-thin tracking-tighter">{{ weather.temp }}°</p>
+                                <p class="text-8xl font-thin tracking-tighter">{{ weather.temp }}°C</p>
                                 <p class="mt-2 text-xl capitalize text-white/90">{{ weather.description }}</p>
                             </div>
                         </div>
@@ -126,7 +139,7 @@ const getBackgroundClass = () => {
                                     </svg>
                                     <span class="text-sm">Feels Like</span>
                                 </div>
-                                <p class="text-2xl font-semibold">{{ weather.feels_like }}°</p>
+                                <p class="text-2xl font-semibold">{{ weather.feels_like }}°C</p>
                             </div>
                             <div class="text-center border-x border-white/20">
                                 <div class="flex items-center justify-center gap-2 text-white/70 mb-2">
